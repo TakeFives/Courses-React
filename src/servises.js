@@ -1,16 +1,18 @@
-//courses
+const URL = 'https://courses-back.onrender.com/'
+
+
 export function fetchAllCourses() {
-	return fetch(`http://localhost:4000/courses/all`)
+	return fetch(URL + `courses/all`)
 		.then((res) => res.json())
 		.then((data) => data);
 }
 export function fetchCourseById(courseId) {
-	return fetch(`http://localhost:4000/courses/${courseId}`)
+	return fetch(URL+`courses/${courseId}`)
 		.then((res) => res.json())
 		.then((data) => data);
 }
 export function fetchCreateCourse(course) {
-	return fetch(`http://localhost:4000/courses/add`, {
+	return fetch(URL+`courses/add`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -31,7 +33,7 @@ export function fetchCreateCourse(course) {
 		});
 }
 export function fetchDeleteCourse(id) {
-	return fetch(`http://localhost:4000/courses/${id}`, {
+	return fetch(URL+`courses/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
@@ -51,7 +53,7 @@ export function fetchDeleteCourse(id) {
 		});
 }
 export function fetchUpdateCourse(id, course) {
-	return fetch(`http://localhost:4000/courses/${id}`, {
+	return fetch(URL+`courses/${id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -74,12 +76,12 @@ export function fetchUpdateCourse(id, course) {
 
 //authors
 export default function fetchAllAuthors() {
-	return fetch(`http://localhost:4000/authors/all`)
+	return fetch(URL+`authors/all`)
 		.then((res) => res.json())
 		.then((data) => data);
 }
 export function fetchCreateAuthor(author) {
-	return fetch(`http://localhost:4000/authors/add`, {
+	return fetch(URL+`authors/add`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -102,7 +104,7 @@ export function fetchCreateAuthor(author) {
 // user
 
 export function fetchGetUser() {
-	return fetch('http://localhost:4000/users/me', {
+	return fetch(URL+'users/me', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
@@ -114,7 +116,7 @@ export function fetchGetUser() {
 }
 
 export function fetchLoginUser(user) {
-	return fetch('http://localhost:4000/login', {
+	return fetch(URL+'login', {
 		method: 'POST',
 		body: JSON.stringify(user),
 		headers: {
@@ -136,7 +138,7 @@ export function fetchLoginUser(user) {
 }
 export function fetchLogoutUser() {
 	console.log('fetchLogoutUser');
-	return fetch('http://localhost:4000/logout', {
+	return fetch(URL+'logout', {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'Bearer Token',
