@@ -1,5 +1,5 @@
 import { addAuthor, getAuthors } from './actionCreators';
-import fetchAllAuthors, { fetchCreateAuthor } from '../../servises';
+import fetchAllAuthors, { fetchCreateAuthor } from '../../services';
 
 export function fetchAuthorsThunk() {
 	return async function fetchAllAuthorsThunk(dispatch) {

@@ -17,7 +17,8 @@ The FE and UI part for a simple SAP to view and edit courses with authorization 
 * list of courses with basic info and authors
 * reusable form to edit or add course for admin role
 * responsive design
-* components and unit tests
+* component and unit tests
+* test and eslint check prior commit rule
 
 ------------------
 
@@ -25,4 +26,5 @@ The FE and UI part for a simple SAP to view and edit courses with authorization 
 
 ------------------
 
-App to be deployed asap via firebase
+App is deployed and connected to provided beckend
+Deployment link https://courses-react.onrender.com/

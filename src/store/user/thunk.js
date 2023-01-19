@@ -1,5 +1,5 @@
 import { getUser, loginUser, logoutUser } from './actionCreators';
-import { fetchLoginUser, fetchGetUser, fetchLogoutUser } from '../../servises';
+import { fetchLoginUser, fetchGetUser, fetchLogoutUser } from '../../services';
 
 export function fetchGetUserThunk() {
 	return async function fetchGetUserInfoThunk(dispatch) {

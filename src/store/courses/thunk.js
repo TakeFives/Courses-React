@@ -9,7 +9,7 @@ import {
 	fetchCreateCourse,
 	fetchDeleteCourse,
 	fetchUpdateCourse,
-} from '../../servises';
+} from '../../services';
 
 export function fetchCoursesThunk() {
 	return async function fetchAllCoursesThunk(dispatch) {
