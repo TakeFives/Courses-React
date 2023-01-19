@@ -1,0 +1,39 @@
+.course-item {
+  display: flex;
+  box-shadow: 0 0 3px #ddd;
+  border-radius: 10px;
+  padding: 2em;
+  gap: 2em;
+  justify-content: space-between;
+}
+.course-item__about {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.course-item__title {
+  margin: 0;
+}
+.course-item__details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 250px;
+  max-width: 250px;
+  border-left: 1px solid #eee;
+  padding-left: 20px;
+}
+.course-item__controls {
+  display: flex;
+  align-self: center;
+  margin-top: 10px;
+  gap: 5px;
+}
+.course-item__controls a{
+  align-self: flex-start;
+}
+.course-item__authors {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

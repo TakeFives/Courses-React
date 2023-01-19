@@ -1,0 +1,17 @@
+*{
+  box-sizing: border-box;
+}
+.app-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: 100vh;
+}
+.app-container footer{
+  justify-self: flex-end;
+  margin-top: auto;
+}
+.wrapper{
+  width: 1024px;
+  margin: 0 auto;
+}

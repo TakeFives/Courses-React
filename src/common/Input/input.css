@@ -1,0 +1,27 @@
+.input{
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #444;
+  justify-self: flex-start;
+  margin-right: auto;
+}
+.input-container{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.required{
+  position: relative;
+}
+.required::after{
+  content: ' *';
+  color: #f00;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+.input-error{
+  font-size: 0.9em;
+  color: #f00;
+}

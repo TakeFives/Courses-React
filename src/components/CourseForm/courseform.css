@@ -1,0 +1,119 @@
+.create-course-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.create-course-data {
+  display: grid;
+  grid-template-columns: 80% auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "title button"
+    "description .";
+  gap: 1em;
+}
+.create-course-data > .input-container {
+  grid-area: title;
+}
+.create-course-data > .textarea-container {
+  grid-area: description;
+}
+.create-course-data > .create-course,
+.create-course-data > .update-course
+ {
+  grid-area: button;
+  justify-self: end;
+  align-self: baseline;
+}
+
+.create-course-extra-data {
+  background-color: #f9f9f9;
+  padding: 1em;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "author select"
+    "duration selected";
+  gap: 2em;
+  justify-content: stretch;
+  align-items: start;
+}
+
+.create-course-add-author {
+  grid-area: author;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.create-course-add-author > .input-container {
+  align-self: stretch;
+}
+.create-course-add-author > .input-container > .input {
+  width: 100%;
+}
+.create-course-add-duration {
+  grid-area: duration;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.create-course-add-duration > .input-container{
+  align-self: stretch;
+}
+.create-course-add-duration > .input-container > .input{
+  width: 100%;
+}
+.create-course-add-duration .duration-text{
+  align-self: flex-start;
+}
+.create-course-select-author {
+  grid-area: select;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.create-course-select-author .authors-list{
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.create-course-selected-authors {
+  grid-area: selected;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+.create-course-selected-authors .course-authors-list{
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.select-author-item,
+.selected-author-item{
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.error {
+  font-size: 0.9em;
+  color: #ff0000;
+  align-self: flex-start;
+}

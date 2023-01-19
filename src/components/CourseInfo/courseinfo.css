@@ -1,0 +1,30 @@
+.course-info {
+  display: grid;
+  gap: 2em;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "title title"
+    "description details";
+  box-shadow: 0 0 3px #ddd;
+  border-radius: 10px;
+  padding: 2em;
+  margin-top: 2em;
+}
+.go-back-link {
+  grid-area: goBack;
+}
+.course-info-title {
+  grid-area: title;
+  text-align: center;
+}
+.course-info-description {
+  grid-area: description;
+}
+.course-info-details {
+  grid-area: details;
+  border-left: 1px solid #eee;
+  width: 300px;
+  margin-left: auto;
+  padding-left: 2em;
+}

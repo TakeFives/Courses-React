@@ -1,0 +1,75 @@
+.button {
+  color: #B71E7B;
+  border: none;
+  background-color: #eee;
+  padding: 10px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.button:hover{
+  background-color: #B71E7B;
+  color: #fff;
+}
+.button.add-course,
+.button.create-course,
+.button.update-course
+{
+  background-color: #B71E7B;
+  color: #fff;
+}
+.button:disabled{
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.button:disabled:hover{
+  background-color: #eee;
+  color: #B71E7B;
+}
+
+.button.edit-course{
+  text-indent: -9999px;
+  overflow: hidden;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #B71E7B;
+  padding: 10px;
+  position: relative;
+}
+.button.edit-course::after{
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-image: url('../../assets/icons/edit.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  filter: invert(1);
+  position: absolute;
+  top: 4px;
+  left: 6px;
+}
+.button.delete-course{
+  text-indent: -9999px;
+  overflow: hidden;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #B71E7B;
+  padding: 10px;
+  position: relative;
+}
+.button.delete-course::after{
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-image: url('../../assets/icons/delete.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  filter: invert(1);
+  position: absolute;
+  top: 4px;
+  left: 5px;
+}
