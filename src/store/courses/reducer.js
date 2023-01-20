@@ -4,6 +4,8 @@ export default function coursesReduser(state = coursesInitialState, action) {
 	switch (action.type) {
 		case 'GET_COURSES':
 			return action.payload;
+		case 'GET_COURSE':
+			return [...state, action.payload];
 		case 'ADD_COURSE':
 			return [...state, action.payload];
 		case 'DELETE_COURSE':

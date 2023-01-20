@@ -1,11 +1,13 @@
 import {
 	getCourses,
+	getCourse,
 	addCourse,
 	editCourse,
 	deleteCourse,
 } from './actionCreators';
 import {
 	fetchAllCourses,
+	fetchCourseById,
 	fetchCreateCourse,
 	fetchDeleteCourse,
 	fetchUpdateCourse,
@@ -15,6 +17,12 @@ export function fetchCoursesThunk() {
 	return async function fetchAllCoursesThunk(dispatch) {
 		const response = await fetchAllCourses();
 		dispatch(getCourses(response.result));
+	};
+}
+export function fetchCourseThunk(id) {
+	return async function fetchOneCourseThunk(dispatch) {
+		const response = await fetchCourseById(id);
+		dispatch(getCourse(response.result));
 	};
 }
 

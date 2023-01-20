@@ -8,7 +8,10 @@ export const getCourseAuthors = (state, authorsIds) => {
 	});
 };
 export const selectCourseById = (state, courseId) => {
-	return state.courses.find((course) => {
-		return courseId?.indexOf(course.id) !== -1;
-	});
+	return (
+		state.courses &&
+		state.courses.find((course) => {
+			return courseId?.indexOf(course.id) !== -1;
+		})
+	);
 };

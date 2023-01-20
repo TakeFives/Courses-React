@@ -13,7 +13,9 @@
 }
 .button.add-course,
 .button.create-course,
-.button.update-course
+.button.update-course,
+.button.login,
+.button.register
 {
   background-color: #B71E7B;
   color: #fff;
@@ -21,6 +23,8 @@
 .button:disabled{
   cursor: not-allowed;
   opacity: 0.5;
+  background-color: #eee;
+  color: #B71E7B;
 }
 .button:disabled:hover{
   background-color: #eee;

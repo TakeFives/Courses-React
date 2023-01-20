@@ -74,8 +74,13 @@ export function fetchUpdateCourse(id, course) {
 }
 
 //authors
-export default function fetchAllAuthors() {
+export function fetchAllAuthors() {
 	return fetch(URL + `authors/all`)
+		.then((res) => res.json())
+		.then((data) => data);
+}
+export function fetchAllAuthorById(authorId) {
+	return fetch(URL + `authors/${authorId}`)
 		.then((res) => res.json())
 		.then((data) => data);
 }

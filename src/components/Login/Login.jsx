@@ -86,8 +86,8 @@ function Login() {
 	return (
 		<div className='wrapper'>
 			<div className='login-container'>
-				<h1>Login</h1>
 				<form className='login-form' onSubmit={handleSubmit}>
+					<h1>Login</h1>
 					<Input
 						type='text'
 						name='email'

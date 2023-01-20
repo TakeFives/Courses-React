@@ -1,24 +1,39 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Link, useParams } from 'react-router-dom';
 
 import { formatDuration } from '../../helpers/pipeDuration';
 import { getCourseAuthors, selectCourseById } from '../../selectors';
+import { fetchCourseThunk } from '../../store/courses/thunk';
+import { fetchAuthorThunk } from '../../store/authors/thunk';
 
 import './courseinfo.css';
 
 function CourseInfo() {
 	let { courseId } = useParams();
+	const dispatch = useDispatch();
 
 	const course = useSelector((state) => selectCourseById(state, courseId));
 	const authors = useSelector((state) => {
-		return getCourseAuthors(state, course.authors);
+		return getCourseAuthors(state, course?.authors);
 	});
+
+	useEffect(() => {
+		if (!course) {
+			dispatch(fetchCourseThunk(courseId));
+		}
+		course?.authors.map((author) => dispatch(fetchAuthorThunk(author)));
+	}, [course, dispatch, courseId]);
+
+	if (!course) {
+		return <div>Loading course ...</div>;
+	}
 
 	return (
 		<div className='wrapper'>
 			<Link to={'/courses'} className='go-back-link'>
-				Back to courses
+				<span>&#8592;</span> Back to courses
 			</Link>
 			<div className='course-info'>
 				<h1 className='course-info-title'>{course.title}</h1>
