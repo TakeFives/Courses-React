@@ -1,38 +1,19 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Link, useParams } from 'react-router-dom';
 
 import { formatDuration } from '../../helpers/pipeDuration';
+import { getCourseAuthors, selectCourseById } from '../../selectors';
 
 import './courseinfo.css';
 
 function CourseInfo() {
 	let { courseId } = useParams();
 
-	const [course, setCourse] = useState({});
-	const [authorList, setAuthorsList] = useState([]);
-
-	function getAuthors(authorsIds) {
-		const authors = authorList.filter((el) => {
-			return authorsIds.indexOf(el.id) !== -1;
-		});
-		return authors;
-	}
-
-	useEffect(() => {
-		fetch(`http://localhost:4000/courses/${courseId}`)
-			.then((res) => res.json())
-			.then((data) => {
-				setCourse(data.result);
-			});
-	}, [courseId]);
-
-	useEffect(() => {
-		fetch('http://localhost:4000/authors/all')
-			.then((res) => res.json())
-			.then((data) => setAuthorsList(data.result));
-	}, []);
+	const course = useSelector((state) => selectCourseById(state, courseId));
+	const authors = useSelector((state) => {
+		return getCourseAuthors(state, course.authors);
+	});
 
 	return (
 		<div className='wrapper'>
@@ -57,7 +38,7 @@ function CourseInfo() {
 					</div>
 					<div>
 						<strong>authors: </strong>
-						{getAuthors(course.authors).map((author) => {
+						{authors.map((author) => {
 							return <div key={author.name}>{author.name}</div>;
 						})}
 					</div>
