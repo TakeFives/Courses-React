@@ -1,19 +1,22 @@
 import './input.css';
 
 function Input(props) {
-	const { labelText, inputError } = props;
 	let label;
 	let error;
+	let hint;
 
-	if (labelText) {
+	if (props.labelText) {
 		label = (
 			<label htmlFor={props.name} className={props.required ? 'required' : ''}>
-				{labelText}
+				{props.labelText}
 			</label>
 		);
 	}
-	if (inputError) {
-		error = <span className='input-error'>{inputError}</span>;
+	if (props.inputError) {
+		error = <span className='input-error'>{props.inputError}</span>;
+	}
+	if (props.inputHint) {
+		hint = <span className='input-hint'>{props.inputHint}</span>;
 	}
 
 	return (
@@ -24,12 +27,14 @@ function Input(props) {
 				name={props.name}
 				id={props.id}
 				placeholder={props.placeholder ? props.placeholder : null}
-				className={`input ${props.className ? props.className : ''}`}
+				className={props.className ? 'input ' + props.className : 'input'}
 				onChange={props.onChange}
 				required={props.required}
 				value={props.value}
 				data-testid={props.dataTestId}
+				onBlur={props.onBlur}
 			/>
+			{!error ? hint : null}
 			{error}
 		</div>
 	);

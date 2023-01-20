@@ -4,24 +4,32 @@
   border-radius: 5px;
   color: #444;
   justify-self: flex-start;
-  margin-right: auto;
 }
 .input-container{
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 10px;
 }
 .required{
   position: relative;
 }
 .required::after{
-  content: ' *';
+  content: '*';
   color: #f00;
   position: absolute;
-  width: 20px;
-  height: 20px;
+  margin-left: 2px;
 }
 .input-error{
-  font-size: 0.9em;
+  font-size: 0.7em;
   color: #f00;
+}
+.input-hint{
+  font-size: 0.7em;
+  color: #999;
+}
+.invalid{
+  border-color: #f00;
+}
+.valid{
+  border-color: #0ebe0e;
 }
