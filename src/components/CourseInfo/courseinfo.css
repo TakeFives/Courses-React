@@ -24,7 +24,23 @@
 .course-info-details {
   grid-area: details;
   border-left: 1px solid #eee;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   margin-left: auto;
   padding-left: 2em;
+}
+@media screen and (max-width: 768px) {
+  .course-info{
+    grid-template-areas:
+    "title"
+    "description"
+    "details";
+  }
+  .course-info-details{
+    border-left: none;
+    padding-left: 0;
+    border-top:  1px solid #eee;
+    padding-top: 1em;
+    max-width: none;
+  }
 }

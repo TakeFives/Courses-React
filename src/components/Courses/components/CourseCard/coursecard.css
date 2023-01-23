@@ -37,3 +37,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+@media screen and (max-width: 768px) {
+  .course-item{
+    flex-direction: column;
+  }
+  .course-item__details{
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    max-width: none;
+    min-width: none;
+  }
+  .course-item__controls{
+    align-self: flex-end;
+  }
+}

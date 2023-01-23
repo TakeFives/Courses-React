@@ -17,3 +17,10 @@
   max-width: 500px;
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .course-list-top-bar {
+    flex-direction: column;
+    gap: 1em;
+  }
+}

@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './courses.css';
+import Loader from '../../common/Loader/Loader';
 
 function Courses(props) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -67,15 +68,19 @@ function Courses(props) {
 				</div>
 			</div>
 			<section className='course-list' data-testid='test-courses-list'>
-				{filteredCourses?.map((course) => {
-					return (
-						<CourseCard
-							course={course}
-							user={user}
-							key={course.id.toString()}
-						></CourseCard>
-					);
-				})}
+				{courseList ? (
+					filteredCourses?.map((course) => {
+						return (
+							<CourseCard
+								course={course}
+								user={user}
+								key={course.id.toString()}
+							></CourseCard>
+						);
+					})
+				) : (
+					<Loader></Loader>
+				)}
 			</section>
 		</div>
 	);

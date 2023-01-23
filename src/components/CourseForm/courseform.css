@@ -117,3 +117,28 @@
   color: #ff0000;
   align-self: flex-start;
 }
+
+@media screen and (max-width: 768px){
+  .create-course-data{
+    grid-template-columns:auto;
+    grid-template-areas:
+    "button"
+    "title"
+    "description";
+  }
+  .create-course-extra-data {
+    grid-template-areas:
+    "author"
+    "select"
+    "selected"
+    "duration";
+  }
+  .create-course-add-duration{
+    width: 200px;
+    margin: 0 auto;
+  }
+  .create-course-add-author{
+    width: 80%;
+    margin: 0 auto;
+  }
+}

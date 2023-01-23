@@ -1,4 +1,5 @@
 import Input from '../../common/Input/Input';
+import Loader from '../../common/Loader/Loader';
 import Textarea from '../../common/Textarea/Textarea';
 import Button from '../../common/Button/Button';
 import CreateAuthor from './components/CreateAuthor/CreateAuthor';
@@ -23,6 +24,8 @@ import {
 } from '../../store/courses/thunk';
 
 function CourseForm(props) {
+	const [isLoading, setIsLoading] = useState(false);
+
 	// on Create mode
 
 	const authors = useSelector(getAuthors);
@@ -58,23 +61,13 @@ function CourseForm(props) {
 		}
 	}, [updateMode, courseToEdit, authors]);
 
-	// handle data changes
-
-	// function handleTitleChange(event) {
-	// 	setTitle(event.target.value);
-	// }
-	// function handleDescriptionChange(event) {
-	// 	setDescription(event.target.value);
-	// }
-
-	// handle form submit
-
 	function formSubmitHandler(event) {
 		event.preventDefault();
 		const isValid = formValidation();
 		const authorsIds = selectedAuthors.map((author) => author.id);
 
 		if (isValid) {
+			setIsLoading(true);
 			const course = {
 				title: title,
 				description: description,
@@ -122,6 +115,7 @@ function CourseForm(props) {
 			<h1>
 				{updateMode ? `Update course "${courseToEdit.title}"` : 'Add course'}
 			</h1>
+			{isLoading ? <Loader></Loader> : null}
 			<div className='create-course-data'>
 				<Input
 					type='text'
