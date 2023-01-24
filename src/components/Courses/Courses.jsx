@@ -20,7 +20,7 @@ function Courses(props) {
 
 	const user = useSelector(getUser);
 	const courseList = useSelector(getCourses);
-
+	console.log(courseList);
 	const dispatch = useDispatch();
 
 	function searchInputHandler(event) {
@@ -68,7 +68,7 @@ function Courses(props) {
 				</div>
 			</div>
 			<section className='course-list' data-testid='test-courses-list'>
-				{courseList ? (
+				{courseList.length ? (
 					filteredCourses?.map((course) => {
 						return (
 							<CourseCard
