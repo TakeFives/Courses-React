@@ -4,7 +4,7 @@
 
 -------------------
 
-The FE and UI part for a simple SAP to view and edit courses with authorization for admin role.
+The FE and UI part for a simple SPA to view and edit courses with authorization for admin role.
 
 -------------------
 
