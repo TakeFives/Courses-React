@@ -67,20 +67,19 @@ function Courses(props) {
 					</Link>
 				</div>
 			</div>
+			{!courseList.length && <Loader></Loader>}
 			<section className='course-list' data-testid='test-courses-list'>
-				{courseList.length ? (
-					filteredCourses?.map((course) => {
-						return (
-							<CourseCard
-								course={course}
-								user={user}
-								key={course.id.toString()}
-							></CourseCard>
-						);
-					})
-				) : (
-					<Loader></Loader>
-				)}
+				{courseList.length
+					? filteredCourses?.map((course) => {
+							return (
+								<CourseCard
+									course={course}
+									user={user}
+									key={course.id.toString()}
+								></CourseCard>
+							);
+					  })
+					: ''}
 			</section>
 		</div>
 	);
