@@ -17,19 +17,21 @@ function Header() {
 	const dispatch = useDispatch();
 
 	function handleLogClick() {
-		if (user.isAuth) {
+		if (user?.isAuth) {
 			dispatch(fetchLogoutUserThunk());
 			localStorage.clear();
+			navigate('/');
+		} else {
+			navigate('/login');
 		}
-		navigate('/login');
 	}
 
 	return (
 		<div className='header-container wrapper'>
 			<Logotype></Logotype>
-			<Welcome username={user.name}></Welcome>
+			<Welcome username={user?.name}></Welcome>
 			<Button
-				buttonText={user.isAuth ? 'Log out' : 'Log In'}
+				buttonText={user?.isAuth ? 'Log out' : 'Log in'}
 				onClick={handleLogClick}
 			/>
 		</div>
