@@ -20,7 +20,6 @@ function Courses(props) {
 
 	const user = useSelector(getUser);
 	const courseList = useSelector(getCourses);
-	console.log(courseList);
 	const dispatch = useDispatch();
 
 	function searchInputHandler(event) {

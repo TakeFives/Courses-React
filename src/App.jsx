@@ -23,7 +23,6 @@ function App() {
 			dispatch(fetchGetUserThunk());
 		}
 	}, [dispatch, token]);
-
 	return (
 		<div className='app-container'>
 			<header>
