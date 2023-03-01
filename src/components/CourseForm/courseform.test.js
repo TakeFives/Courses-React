@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import CourseForm from '../CourseForm';
+import CourseForm from './CourseForm';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { unmountComponentAtNode } from 'react-dom';
