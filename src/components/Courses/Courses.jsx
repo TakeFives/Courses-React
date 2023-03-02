@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './courses.css';
 import Loader from '../../common/Loader/Loader';
 
-function Courses(props) {
+function Courses() {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredCourses, setFilteredCourses] = useState([]);
 
