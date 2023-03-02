@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { unmountComponentAtNode } from 'react-dom';
 import '@testing-library/jest-dom';
 
 let initialState = {
@@ -54,44 +53,134 @@ let initialState = {
 	],
 };
 
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
-const store = mockStore(initialState);
+function renderWithStore(initialStoreState) {
+	const middlewares = [thunk];
 
-const coursesWrapped = (
-	<Provider store={store}>
-		<Courses />
-	</Provider>
-);
+	const mockStore = configureStore(middlewares);
+	const store = mockStore(initialStoreState);
 
-let container = null;
-beforeEach(() => {
-	container = document.createElement('div');
-	document.body.appendChild(container);
-});
-
-afterEach(() => {
-	unmountComponentAtNode(container);
-	container.remove();
-	container = null;
-});
+	render(
+		<BrowserRouter>
+			<Provider store={store}>
+				<Courses />
+			</Provider>
+		</BrowserRouter>
+	);
+}
 
 describe('Course list should display courses correctly', () => {
 	test('renders courses display amount of CourseCard equal length of courses array', () => {
-		render(coursesWrapped, { wrapper: BrowserRouter }, container);
+		renderWithStore(initialState);
 		const courses = screen.getAllByTestId('test-course-card');
 		expect(courses).toHaveLength(initialState.courses.length);
 	});
 	test('renders courses display Empty container if courses array length is 0.', () => {
-		initialState.courses = [];
-		render(coursesWrapped, { wrapper: BrowserRouter }, container);
+		renderWithStore({
+			...initialState,
+			courses: [],
+		});
 		expect(screen.queryByTestId('test-courses-list')).toBeEmptyDOMElement();
 	});
 });
 
+describe('Course list should display courses correctly according to search', () => {
+	beforeEach(() => {
+		renderWithStore(initialState);
+	});
+	test('Input for search term is in DOM', () => {
+		const inputSearch = screen.getByPlaceholderText('Enter course name...', {
+			selector: 'input',
+			exact: false,
+		});
+		expect(inputSearch).toBeInTheDocument();
+	});
+	test('Button "Search" is in DOM', () => {
+		const buttonSearch = screen.getByText('Search', {
+			selector: 'button',
+			exact: false,
+		});
+		expect(buttonSearch).toBeInTheDocument();
+	});
+	test('Entering search term in search input chages it`s value', async () => {
+		const searchTerm = 'React';
+		const inputSearch = screen.getByPlaceholderText('Enter course name...', {
+			selector: 'input',
+			exact: false,
+		});
+		const user = userEvent.setup();
+		await user.type(inputSearch, searchTerm);
+		expect(inputSearch.value).toBe(searchTerm);
+	});
+	test('Search button calls handler with wrong searchterm', async () => {
+		const searchTerm = 'React';
+		const inputSearch = screen.getByPlaceholderText('Enter course name...', {
+			selector: 'input',
+			exact: false,
+		});
+		const buttonSearch = screen.getByText('Search', {
+			selector: 'button',
+			exact: false,
+		});
+		const user = userEvent.setup();
+		await user.type(inputSearch, searchTerm);
+		await user.click(buttonSearch);
+		expect(inputSearch.value).toBe(searchTerm);
+		expect(screen.queryByTestId('test-courses-list')).toBeEmptyDOMElement();
+	});
+	test('Search button calls handler with correct searchterm', async () => {
+		const searchTerm = 'Angular';
+		const inputSearch = screen.getByPlaceholderText('Enter course name...', {
+			selector: 'input',
+			exact: false,
+		});
+		const buttonSearch = screen.getByText('Search', {
+			selector: 'button',
+			exact: false,
+		});
+		const user = userEvent.setup();
+		await user.type(inputSearch, searchTerm);
+		await user.click(buttonSearch);
+		const courses = screen.getAllByTestId('test-course-card');
+		expect(inputSearch.value).toBe(searchTerm);
+		expect(screen.queryByTestId('test-courses-list')).not.toBeEmptyDOMElement();
+		expect(courses).toHaveLength(1);
+	});
+	test('Search button calls handler with no searchterm', async () => {
+		const inputSearch = screen.getByPlaceholderText('Enter course name...', {
+			selector: 'input',
+			exact: false,
+		});
+		const buttonSearch = screen.getByText('Search', {
+			selector: 'button',
+			exact: false,
+		});
+		inputSearch.value = 'some text';
+		const user = userEvent.setup();
+		await user.clear(inputSearch);
+		await user.click(buttonSearch);
+		const courses = screen.getAllByTestId('test-course-card');
+		expect(screen.queryByTestId('test-courses-list')).not.toBeEmptyDOMElement();
+		expect(courses).toHaveLength(initialState.courses.length);
+	});
+	test('Clearing search input shows all courses', async () => {
+		const courses = screen.getAllByTestId('test-course-card');
+		const inputSearch = screen.getByPlaceholderText('Enter course name...', {
+			selector: 'input',
+			exact: false,
+		});
+		inputSearch.value = 'react';
+		const user = userEvent.setup();
+		await user.clear(inputSearch);
+		expect(screen.queryByTestId('test-courses-list')).not.toBeEmptyDOMElement();
+		expect(courses).toHaveLength(initialState.courses.length);
+	});
+});
+
 describe('CourseForm should be showed after a click on a button "Add new course".', () => {
+	beforeEach(() => {
+		renderWithStore(initialState);
+	});
 	test('Button "Add new course" is in DOM', () => {
-		render(coursesWrapped, { wrapper: BrowserRouter }, container);
 		const button = screen.getByText('Add course', {
 			selector: 'button',
 			exact: false,
@@ -99,7 +188,6 @@ describe('CourseForm should be showed after a click on a button "Add new course"
 		expect(button).toBeInTheDocument();
 	});
 	test('Button "Add new course" calls onClick when clicked', async () => {
-		render(coursesWrapped, { wrapper: BrowserRouter });
 		const user = userEvent.setup();
 		await user.click(screen.getByTestId('add-course-link'));
 		expect(window.location.pathname).toBe('/courses/add');
