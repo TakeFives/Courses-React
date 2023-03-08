@@ -125,6 +125,7 @@ function CourseForm(props) {
 					value={title}
 					className='course-title'
 					onChange={(event) => setTitle(event.target.value)}
+					dataTestId='course-title'
 				/>
 				<Textarea
 					labelText='Description'
@@ -132,10 +133,12 @@ function CourseForm(props) {
 					value={description}
 					className='course-description'
 					onChange={(event) => setDescription(event.target.value)}
+					dataTestId='course-description'
 				></Textarea>
 				<Button
 					buttonText={updateMode ? 'Update course' : 'Create course'}
 					type='submit'
+					dataTestId='course-submit-button'
 				/>
 			</div>
 			<div className='create-course-extra-data'>
