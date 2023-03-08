@@ -13,6 +13,7 @@ function Duration({ duration, setDuration }) {
 				labelText='Duration'
 				placeholder='Enter duration in minutes...'
 				onChange={(event) => setDuration(event.target.value)}
+				dataTestId='course-duration'
 			/>
 			<span className='duration-text'>
 				Duration: <strong>{durationInHours}</strong> hours

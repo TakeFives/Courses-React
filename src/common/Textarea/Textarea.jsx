@@ -15,6 +15,7 @@ function Textarea(props) {
 				className={`textarea ${props.className ? props.className : ''}`}
 				value={props.value}
 				onChange={props.onChange}
+				data-testid={props.dataTestId}
 			></textarea>
 		</div>
 	);
